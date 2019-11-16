@@ -8,5 +8,21 @@ No* criaNo(int f, char l) {
 }
 
 void imprimeNo(No *no) {
-  printf("Letra %c: %d", no->letra, no->frequencia);
+  printf("\nLetra %c: %d", getLetra(no), getFrequencia(no));
+}
+
+int getFrequencia(No *no) {
+  return no->frequencia;
+}
+
+char getLetra(No *no) {
+  return no->letra;
+}
+
+void setEsquerda(No *raiz, No *no) {
+  raiz->esquerda = no;
+}
+
+void setDireita(No *raiz, No *no) {
+  raiz->direita = no;
 }

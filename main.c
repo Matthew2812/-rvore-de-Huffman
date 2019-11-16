@@ -4,7 +4,7 @@ Nome: Matheus Soares Santos               TIA: 31895263
 Nome: Wanderson Bezerra de Lima           TIA: 31895591
 */
 #include "arvore.h"
-#include "fila.h"
+#include "lista.h"
 #include <stdio.h>
 #define ASCII 97
 #define TAM 1000
@@ -37,8 +37,8 @@ int main() {
   for(char t = 'A'; t <= 'Z'; t++) {
     printf("%c ", t);
   }
-  
-  Fila *fila = criaFila(quant);
+
+  Lista *lista = criaLista();
 
   printf("\n");
 
@@ -48,17 +48,21 @@ int main() {
       int f = letras[j];
       char l = 97 + j;
       No *novo = criaNo(f, l);
-      Arvore *nova = criaArvore(novo);
-      insereFila(fila, nova);
+      insereNo(lista, novo);
     }
   }
 
-  printf("\n");
-  imprimeFila(fila);
-  printf("\nTamanho da Fila: %d\n", fila->quant);
-  Arvore *aux = removeFila(fila);
-  imprimeFila(fila);
-  printf("\nTamanho da Fila: %d\n", fila->quant);
+  printf("\n\nLista");
+  imprimeLista(lista);
 
+  Arvore *arv = criaArvore();
+  criaHuffman(arv, lista);
+  printf("\n\nArvore pre-ordem");
+  imprimeArvore(arv->raiz);
+  printf("\n");
+
+  char codigo[arv->raiz->letra-66];
+  criaCodigos(arv->raiz, 0, arv->raiz, codigo, true);
+  printf("\n");
   return 0;
 }
